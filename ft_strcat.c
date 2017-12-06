@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmolina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/05 14:41:25 by nmolina           #+#    #+#             */
-/*   Updated: 2017/12/05 14:41:29 by nmolina          ###   ########.fr       */
+/*   Created: 2017/12/05 18:21:39 by nmolina           #+#    #+#             */
+/*   Updated: 2017/12/05 21:34:31 by nmolina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar(char c)
+char	*ft_strcat(char *s1, const char *s2)
 {
-	write(1, &c, 1);
+	int index;
+	int length;
+
+	index = 0;
+	length = 0;
+	while (s1[length])
+		length++;
+	while (s2[index])
+	{
+		s1[length + index] = s2[index];
+		index++;
+	}
+	s1[length + index] = '\0';
+	return (s1);
 }
