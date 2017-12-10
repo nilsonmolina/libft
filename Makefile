@@ -5,8 +5,8 @@ O_FILES = ft_*.o
 
 $(NAME):
 	@gcc -c $(FLAGS) $(C_FILES)
-	@ar rc libft.a $(O_FILES) libft.h
-	@ranlib libft.a
+	@ar rc $(NAME) $(O_FILES) libft.h
+	@ranlib $(NAME)
 
 all: $(NAME)
 
