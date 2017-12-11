@@ -6,52 +6,60 @@
 /*   By: nmolina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 18:46:46 by nmolina           #+#    #+#             */
-/*   Updated: 2017/12/09 20:36:31 by nmolina          ###   ########.fr       */
+/*   Updated: 2017/12/10 16:20:51 by nmolina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		left_ws(char const *s)
-{
-	int i;
-
-	i = 0;
-	while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t')
-		i++;
-	return (i);
-}
-
-static int		right_ws(char const *s)
-{
-	int i;
-
-	i = ft_strlen(s) - 1;
-	while (i > 0 && (s[i] == ' ' ||
-				s[i] == '\n' || s[i] == '\t' || s[i] == '\0'))
-		i--;
-	return (ft_strlen(s) - 1 - i);
-}
+static int		leading_ws(char const *str);
+static int		trailing_ws(char const *str);
 
 char			*ft_strtrim(char const *s)
 {
-	int		i;
-	int		size;
-	int		j;
 	char	*str;
-
-	j = 0;
+	int		index;
+	int		iterator;
+	int		length;
+	int		head;
+	int		tail;
+	
 	if (!s)
 		return (NULL);
-	size = ft_strlen(s) - right_ws(s) - left_ws(s);
-	if (size < 0)
-		return (ft_strcpy((char*)malloc(sizeof(char) * 2), ""));
-	str = (char *)malloc(sizeof(*str) * (size + 1));
+	head = leading_ws(s);
+	tail = trailing_ws(s);
+	length = ft_strlen(s) - head - tail;
+	if (length < 0)
+		return (ft_strcpy((char*)malloc(sizeof(char) + 1), ""));
+	str = (char *)malloc(sizeof(*str) * (length + 1));
 	if (!str)
 		return (NULL);
-	i = left_ws(s);
-	while (i < left_ws(s) + size)
-		str[j++] = s[i++];
-	str[j] = '\0';
+	index = 0;
+	iterator = head;
+	while (iterator < head + length)
+		str[index++] = s[iterator++];
+	str[index] = '\0';
 	return (str);
+}
+
+static int		leading_ws(char const *str)
+{
+	int index;
+
+	index = 0;
+	while (IS_WS(str[index]))
+		index++;
+	return (index);
+}
+
+static int		trailing_ws(char const *str)
+{
+	int index;
+	int length;
+
+	length = ft_strlen(str) - 1;
+	index = length;
+	while (index > 0 && (IS_WS(str[index]) || str[index] == '\0'))
+		index--;
+	return (length - index);	
 }
