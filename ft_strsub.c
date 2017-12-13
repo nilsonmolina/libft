@@ -6,7 +6,7 @@
 /*   By: nmolina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 18:08:18 by nmolina           #+#    #+#             */
-/*   Updated: 2017/12/09 18:29:16 by nmolina          ###   ########.fr       */
+/*   Updated: 2017/12/10 19:57:45 by nmolina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	char *new;
-	size_t index;
+	char	*new;
+	size_t	index;
 
 	if (!s)
 		return (NULL);

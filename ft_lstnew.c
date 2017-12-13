@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnequ.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmolina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/09 17:00:57 by nmolina           #+#    #+#             */
-/*   Updated: 2017/12/10 19:50:13 by nmolina          ###   ########.fr       */
+/*   Created: 2017/12/10 19:10:58 by nmolina           #+#    #+#             */
+/*   Updated: 2017/12/10 19:59:30 by nmolina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strnequ(char const *s1, char const *s2, size_t n)
+t_list		*ft_lstnew(void const *content, size_t content_size)
 {
-	size_t	index;
-	size_t	count;
+	t_list	*tmp;
 
-	if (!(s1 && s2))
-		return (0);
-	index = 0;
-	count = 0;
-	while (s1[index] && index < n)
+	tmp = (t_list *)malloc(sizeof(t_list));
+	if (!tmp)
+		return (NULL);
+	if (!content)
 	{
-		if (s1[index] == s2[index])
-			count++;
-		index++;
+		tmp->content = NULL;
+		tmp->content_size = 0;
 	}
-	return (count == index);
+	else
+	{
+		tmp->content = malloc(content_size);
+		if (!tmp->content)
+			return (NULL);
+		ft_memcpy(tmp->content, content, content_size);
+		tmp->content_size = content_size;
+		tmp->next = NULL;
+	}
+	return (tmp);
 }

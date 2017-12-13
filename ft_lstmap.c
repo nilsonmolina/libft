@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnequ.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmolina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/09 17:00:57 by nmolina           #+#    #+#             */
-/*   Updated: 2017/12/10 19:50:13 by nmolina          ###   ########.fr       */
+/*   Created: 2017/12/12 23:16:50 by nmolina           #+#    #+#             */
+/*   Updated: 2017/12/12 23:43:02 by nmolina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strnequ(char const *s1, char const *s2, size_t n)
+t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	size_t	index;
-	size_t	count;
+	t_list *temp;
+	t_list *head;
 
-	if (!(s1 && s2))
-		return (0);
-	index = 0;
-	count = 0;
-	while (s1[index] && index < n)
+	temp = f(lst);
+	head = temp;
+	while (lst->next)
 	{
-		if (s1[index] == s2[index])
-			count++;
-		index++;
+		lst = lst->next;
+		temp->next = f(lst);
+		temp = temp->next;
 	}
-	return (count == index);
+	return (head);
 }

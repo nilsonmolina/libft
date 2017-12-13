@@ -6,7 +6,7 @@
 /*   By: nmolina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 18:29:25 by nmolina           #+#    #+#             */
-/*   Updated: 2017/12/09 18:46:15 by nmolina          ###   ########.fr       */
+/*   Updated: 2017/12/10 19:48:56 by nmolina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char *str;
-	int index;
-	int iterator;
+	char	*str;
+	int		index;
+	int		iterator;
 
 	if (!(s1 && s2))
 		return (NULL);
