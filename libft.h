@@ -6,7 +6,7 @@
 /*   By: nmolina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 14:41:58 by nmolina           #+#    #+#             */
-/*   Updated: 2017/12/13 20:23:57 by nmolina          ###   ########.fr       */
+/*   Updated: 2017/12/14 19:08:47 by nmolina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,6 @@ t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
 int				ft_isupper(int c);
 int				ft_islower(int c);
+char			*ft_str_capitalizer(char *str);
 
 #endif
