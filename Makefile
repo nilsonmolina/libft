@@ -1,19 +1,32 @@
-NAME = libft.a
-FLAGS = -Wall -Wextra -Werror
-C_FILES = ft_*.c
-O_FILES = ft_*.o
+SRCDIR = src
+OBJDIR = obj
 
-$(NAME):
-	@gcc -c $(FLAGS) $(C_FILES)
-	@ar rc $(NAME) $(O_FILES) libft.h
-	@ranlib $(NAME)
+SRC = ft_*.c 
+OBJ = $(SRC:.c=.o)
+
+SRCS = $(addprefix $(SRCDIR)/, $(SRC))
+OBJS = $(addprefix $(OBJDIR)/, $(OBJ))
+HEADER = -I includes
+
+CC = gcc
+CFLAGS = -c -Wall -Wextra -Werror
+NAME = libft.a
+
+# prevents name collision with files in the directory.
+.PHONY: all clean fclean re
 
 all: $(NAME)
 
-clean:
-	@rm -rf $(O_FILES)
+$(NAME):
+	@$(CC) $(CFLAGS) $(HEADER) $(SRCS)
+	@/bin/mkdir -p $(OBJDIR)
+	@mv $(OBJ) $(OBJDIR)/
+	@ar src $(NAME) $(OBJS)
 
-fclean: clean 
-	@rm -rf $(NAME)
+clean:
+	@/bin/rm -rf $(OBJDIR)
+
+fclean: clean
+	@/bin/rm -f $(NAME)
 
 re: fclean all
